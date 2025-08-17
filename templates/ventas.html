@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Registrar Venta</h2>
+<form method="POST">
+    <select name="producto_id" required>
+        <option value="">Seleccionar producto</option>
+        {% for p in productos %}
+        <option value="{{ p.id }}">{{ p.nombre }} - Stock: {{ p.stock }}</option>
+        {% endfor %}
+    </select>
+    <input type="number" name="cantidad" placeholder="Cantidad" min="1" required>
+    <button type="submit">Registrar Venta</button>
+</form>
+
+<h3>Historial de Ventas</h3>
+<table border="1">
+    <tr><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio Unitario</th><th>Total</th><th>Fecha</th></tr>
+    {% for v in ventas %}
+    <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.nombre }}</td>
+        <td>{{ v.cantidad }}</td>
+        <td>${{ "%.2f"|format(v.precio) }}</td>
+        <td>${{ "%.2f"|format(v.precio * v.cantidad) }}</td>
+        <td>{{ v.fecha }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
