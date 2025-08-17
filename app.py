@@ -1,4 +1,4 @@
-print("hola el app.py se esta ejecutando")
+print("hola! el app.py se esta ejecutando")
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
